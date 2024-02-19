@@ -2,6 +2,9 @@ import app from "./server.js";
 import supertest from "supertest";
 const request = supertest(app);
 
+// to run tests
+// 
+
 describe("Test endpoints", () => {
   it("gets the test endpoint", async () => {
     const response = await request.get("/");
