@@ -3,7 +3,7 @@ import supertest from "supertest";
 const request = supertest(app);
 
 // to run tests
-// 
+// NODE_OPTIONS="$NODE_OPTIONS --experimental-vm-modules" npx jest
 
 describe("Test endpoints", () => {
   it("gets the test endpoint", async () => {
