@@ -20,45 +20,30 @@ describe("Test endpoints", () => {
     });
     expect(response.status).toBe(200);
   });
-
-
-
-
 });
 
+describe("gets the /ask endpoint", () => {
+  it("gets the /ask endpoint", async () => {
+    const response = await request.post("/ask").send({
+      length: 5,
+      topic: "javascript",
+      expertise: "beginner",
+      style: "nerdy",
+    });
 
-
-
-describe('gets the /ask endpoint', () => {
-it("gets the /ask endpoint", async () => {
-  const response = await request.post("/ask").send({
-    length: 5,
-    topic: "javascript",
-    expertise: "beginner",
-    style: "nerdy",
+    expect(response.status).toBe(200);
+    // expect(response.body).toBeDefined();
   });
-
-  expect(response.status).toBe(200);
-  // expect(response.body).toBeDefined();
 });
 
-})
+describe("throws error for non-exisiting endpoint", () => {
+  it("checks if error for non-existent route", async () => {
+    const response = await request.get("/nonexistent");
+    expect(response.status).toBe(404);
+  });
+});
 
-
-
-describe('throws error for non-exissiting endpoint', () => {
-  it('checks if error for non-existent route', async () => {
-    const response = await request.get('/nonexistent')
-    expect(response.status).toBe(404)
-  } )
-
-
-
-})
-
-
-
-describe('checks for the prompt ', () => {
+describe("checks for the prompt ", () => {
   it("checks if /ask endpoint has a prompt", async () => {
     // this will check app.js for the prompt
     const response = await request.post("/ask").send({
@@ -68,12 +53,20 @@ describe('checks for the prompt ', () => {
       style: "cowboy",
     });
     expect(response.text).toContain(`"role":"assistant"`);
+  });
+});
 
-
-  })
-
-
-
+describe('checks for content in the prompt', () => {
+  it('contains content in the prompt', async () => {
+    
+    const response = await request.post("/ask").send({
+      length: 5,
+      topic: "coffee",
+      expertise: "expert",
+      style: "8 year old ",
+    });
+    expect(response.text).toContain(`"content"`);
+  });
 })
 
 
