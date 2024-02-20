@@ -1,4 +1,4 @@
-# Welcome to the LRNR App withh Testing!
+# Welcome to the LRNR App with Testing!
 
 First clone the repository to your machine 
 
