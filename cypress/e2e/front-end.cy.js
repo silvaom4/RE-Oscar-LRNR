@@ -39,7 +39,7 @@ describe('it tests the quiz generation page', () => {
 })
 
 
-})
+
 
 
 //4
@@ -53,3 +53,42 @@ describe('it loads the account page', () => {
 
     })
   })
+
+
+  //5
+  describe('it contains a button on the home page', () => {
+    it('contains button with text begin journey', () => {
+      cy.visit('/')
+      cy.get('a').contains('Begin Journey')
+      
+    })
+  })
+
+  // 6
+
+  describe('it contains personalized quizzes', () => {
+    it('contains text that says personalized quizzes', () => {
+      cy.visit('/')
+      cy.contains('Personalized Quizzes')
+    })
+  })
+
+  // 7
+  describe('it contains rewarding', () => {
+    it('contains text that says rewarding', () => {
+      cy.visit('/')
+      cy.contains('Rewarding')
+    })
+  })})
+  
+  // 8
+  describe('it tests the quiz generation options', () => {
+  it('checks for options expert, matthew mcconaughey, and aws', () => {
+    cy.visit('/quiz-generation')
+
+    cy.get('select[name=topic]').select('aws').should('have.value','aws')
+    cy.get('select[name=expertise]').select(`expert`).should('have.value','expert')
+    cy.get('select[name=style]').select('matthew mcconaughey').should('have.value','matthew mcconaughey')
+  })
+
+})
